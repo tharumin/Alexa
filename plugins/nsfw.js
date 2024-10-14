@@ -12,7 +12,7 @@ try{
 
 const url = 'https://api.waifu.pics/nsfw/waifu'
 
-try for (let i = 0 ; i < 5 ; i++ ) 
+    let i = 0 ; i < 5 ; i++
     const response = await axios.get(url)
     const imageUrl = response.data.url
 
