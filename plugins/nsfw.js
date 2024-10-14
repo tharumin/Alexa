@@ -21,7 +21,7 @@ const url = 'https://api.waifu.pics/nsfw/waifu'
 
 }catch(e){
     console.log(e)
-    reply(`${e}`)
+    reply(`*Error*`)
 }
 }
 )
