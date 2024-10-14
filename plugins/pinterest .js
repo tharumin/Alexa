@@ -12,9 +12,9 @@ try{
 if(!q) return reply("*give me a title*\n- Ex : .pinterest anime girl")
 const json = await pinterest(q)
 
-await conn.sendMessage(from, { image: { url: json }, caption: '- *🌸ALEXA-MD RANDOM PINTEREST IMAGES🌸*\n\n\n> Created By Sadeesha Tharumin' }, { quoted: mek });
+await conn.sendMessage(from, { image: { url: json.getRandom}, caption: '- *🌸ALEXA-MD RANDOM PINTEREST IMAGES🌸*\n\n\n> Created By Sadeesha Tharumin' }, { quoted: mek });
     } catch (e) {
         console.log(e);
-        reply(`*Error Fetching Anime Girl image*: ${e.message}`);
+        reply(`*Error Fetching image*: ${e.message}`);
     }
 });
