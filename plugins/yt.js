@@ -8,7 +8,7 @@ const {
   getJson,
   validateQuality,
 } = require("https://github.com/Neeraj-x0/X-Asena/tree/main/lib");
-const { yta, ytv, ytsdl } = require("../lib/yt");
+const { yta, ytv, ytsdl } = require("https://github.com/Neeraj-x0/X-Asena/blob/main/lib/ytdl.js");
 
 command(
   {
