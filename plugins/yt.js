@@ -8,7 +8,7 @@ const {
   getJson,
   validateQuality,
 } = require("https://github.com/Neeraj-x0/X-Asena/tree/main/lib");
-const { yta, ytv, ytsdl } = require("../lib/ytdl");
+const { yta, ytv, ytsdl } = require("../lib/yt");
 
 command(
   {
@@ -25,7 +25,7 @@ command(
         `https://api.thexapi.xyz/api/v1/download/youtube/audio?url=${match}`
       )
     ).data;
-    await message.reply(`_Downloading ${title}_`);
+    await message.reply(`_Downloading ${title}_\n> ALEXA-MD`);
     let buff = await getBuffer(dlink);
     return await message.sendMessage(
       message.jid,
@@ -93,7 +93,7 @@ command(
     match = match || message.reply_message.text;
     if (!match) return await message.reply("Give me a query");
     let { dlink, title } = await ytsdl(match);
-    await message.reply(`_Downloading ${title}_`);
+    await message.reply(`_🌸 Downloading ${title}_\n> ALEXA-MD`);
     let buff = await getBuffer(dlink);
     return await message.sendMessage(
       message.jid,
