@@ -7,8 +7,8 @@ const {
   toAudio,
   getJson,
   validateQuality,
-} = require("../../lib");
-const { yta, ytv, ytsdl } = require("../../lib/ytdl");
+} = require("https://github.com/Neeraj-x0/X-Asena/tree/main/lib");
+const { yta, ytv, ytsdl } = require("../lib/ytdl");
 
 command(
   {
