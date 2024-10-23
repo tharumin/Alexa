@@ -1,5 +1,5 @@
-const { command, isPrivate } = require("../lib");
-const { isAdmin, parsedJid } = require("../lib");
+const { command, isPrivate } = require("https://github.com/Neeraj-x0/X-Asena/tree/main/lib");
+const { isAdmin, parsedJid } = require("https://github.com/Neeraj-x0/X-Asena/tree/main/lib");
 
 command(
   {
