@@ -1,5 +1,5 @@
+const { command } = require("../command");
 const {
-  command,
   isPrivate,
   isUrl,
   AddMp3Meta,
@@ -7,8 +7,8 @@ const {
   toAudio,
   getJson,
   validateQuality,
-} = require("https://github.com/Neeraj-x0/X-Asena/tree/main/lib");
-const { yta, ytv, ytsdl } = require("https://github.com/Neeraj-x0/X-Asena/blob/main/lib/ytdl.js");
+} = require("../lib/functions");
+const { yta, ytv, ytsdl } = require("../lib/yt");
 
 command(
   {
