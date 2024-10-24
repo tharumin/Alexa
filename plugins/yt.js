@@ -1,5 +1,6 @@
 const {cmd , commands} = require('../command')
 const { fetchJson } = require("../lib/functions")
+const yts = require("yt-search")
 
 cmd({
     pattern: "song2",
