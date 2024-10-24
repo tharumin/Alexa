@@ -11,7 +11,7 @@ async (conn, mek, m, { from, body, isOwner }) => {
     const filePath = path.join(__dirname, '../media/autovoice.json');
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     for (const text in data) {
-        if (body.toLowerCase() <= text.toLowerCase()) {
+        if (body.toLowerCase() == text.toLowerCase()) {
             if (config.AUTO_VOICE === 'true') {
                 //if (isOwner) return;        
                 await conn.sendPresenceUpdate('recording', from);
