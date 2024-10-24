@@ -14,7 +14,7 @@ if (!q) return m.reply("*Provide an app name*")
 
 let data = await fetchJson (`https://bk9.fun/search/apk?q=${q}`)
         let dreaded = await fetchJson (`https://bk9.fun/download/apk?id=${data.BK9[0].id}`)
-reply("*🌸DOWNLOADING···*\n> ALEXA-MD
+reply("*🌸DOWNLOADING···*\n> ALEXA-MD")
          await conn.sendMessage(
               from,
               {
