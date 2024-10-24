@@ -10,8 +10,8 @@ cmd({
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
 
-if (!text) return m.reply("*What song do you want to download ?*")
-let search = await yts(text)
+if (!q) return m.reply("*What song do you want to download ?*")
+let search = await yts(q)
         let link = search.all[0].url
 
         let data = await fetchJson (`https://api.dreaded.site/api/ytdl/video?url=${link}`)
