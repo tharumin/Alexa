@@ -1,131 +1,26 @@
-const { command } = require("../command");
-const {
-  isPrivate,
-  isUrl,
-  AddMp3Meta,
-  getBuffer,
-  toAudio,
-  getJson,
-  validateQuality,
-} = require("../lib/functions");
-const { yta, ytv, ytsdl } = require("../lib/yt");
+const {cmd , commands} = require('../command')
+const { fetchJson } = require("../lib/functions")
 
-command(
-  {
-    pattern: "yta",
-    fromMe: isPrivate,
-    desc: "Download audio from youtube",
-  },
-  async (message, match) => {
-    match = match || message.reply_message.text;
-    if (!match) return await message.reply("Give me a youtube link");
-    if (!isUrl(match)) return await message.reply("Give me a youtube link");
-    let { dlink, title } = (
-      await getJson(
-        `https://api.thexapi.xyz/api/v1/download/youtube/audio?url=${match}`
-      )
-    ).data;
-    await message.reply(`_Downloading ${title}_\n> ALEXA-MD`);
-    let buff = await getBuffer(dlink);
-    return await message.sendMessage(
-      message.jid,
-      buff,
-      {
-        mimetype: "audio/mpeg",
-        filename: title + ".mp3",
-      },
-      "audio"
-    );
-  }
-);
-
-command(
-  {
-    pattern: "ytv",
-    fromMe: isPrivate,
-    desc: "Download audio from youtube",
-  },
-  async (message, match) => {
-    match = match || message.reply_message.text;
-    let url = getUrl(match)[0];
-    if (!url)
-      return await message.reply(
-        "Give me a youtube link\n\nExample: ytv youtube.com/watch?v=xxxxx 480p"
-      );
-    let quality = match.split(";")[1];
-    if (quality && !validateQuality(quality)) {
-      return await message.reply(
-        "Invalid Resolution \nSupported: 144p, 240p, 360p, 480p, 720p, 1080p, 1440p, 2160p"
-      );
-    } else if (!quality) quality = "360p";
-    if (!match)
-      return await message.reply(
-        "Give me a youtube link\n\nExample: ytv youtube.com/watch?v=xxxxx 480p"
-      );
-    if (!isUrl(match))
-      return await message.reply(
-        "Give me a youtube link\n\nExample: ytv youtube.com/watch?v=xxxxx 480p"
-      );
-    let requrl = `https://api.thexapi.xyz/api/v1/download/youtube/video?url=${url}&quality=${quality}`;
-    let response = (await getJson(requrl)).data;
-    const { dlink, title } = response;
-    console.log(response);
-    await message.reply(`_Downloading ${title}_`);
-    return await message.sendMessage(
-      message.jid,
-      dlink,
-      {
-        mimetype: "video/mp4",
-        filename: title + ".mp4",
-      },
-      "video"
-    );
-  }
-);
-
-command(
-
+cmd({
     pattern: "song2",
-    fromMe: isPrivate,
-    desc: "Download audio from youtube",
-  },
-  async (message, match) => {
-    match = match || message.reply_message.text;
-    if (!match) return await message.reply("Give me a query");
-    let { dlink, title } = await ytsdl(match);
-    await message.reply(`_🌸 Downloading ${title}_\n> ALEXA-MD`);
-    let buff = await getBuffer(dlink);
-    return await message.sendMessage(
-      message.jid,
-      buff,
-      {
-        mimetype: "audio/mpeg",
-        filename: title + ".mp3",
-      },
-      "audio"
-    );
-  }
-);
+    desc: "Download song sever 2",
+    category: "download",
+    filename: __filename
+},
+async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
+try{
 
-command(
-  {
-    pattern: "video2",
-    fromMe: isPrivate,
-    desc: "Download video from youtube",
-  },
-  async (message, match) => {
-    match = match || message.reply_message.text;
-    if (!match) return await message.reply("Give me a query");
-    let { dlink, title } = await ytsdl(match, "video");
-    await message.reply(`_Downloading ${title}_`);
-    return await message.sendMessage(
-      message.jid,
-      dlink,
-      {
-        mimetype: "video/mp4",
-        filename: title + ".mp4",
-      },
-      "video"
-    );
-  }
-);
+if (!text) return m.reply("*What song do you want to download ?*")
+let search = await yts(text)
+        let link = search.all[0].url
+
+        let data = await fetchJson (`https://api.dreaded.site/api/ytdl/video?url=${link}`)
+
+await reply("*🌸DOWNLOADING···*\n_${search.all[0].title}_\n> ALEXA")
+await conn.sendMessage(from, {document: {url: data.result.downloadLink},mimetype: "audio/mp3",fileName: `${search.all[0].title}.mp3`,caption: `*© ᴄʀᴇᴀᴛᴇᴅ ʙʏ ꜱᴀᴅᴇᴇꜱʜᴀ ᴄᴏᴅᴇʀ · · ·* 🧑🏻‍💻`}, { quoted: mek })
+
+}catch(e){
+console.log(e)
+reply(`${e}`)
+}
+})
