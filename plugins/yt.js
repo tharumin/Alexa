@@ -17,7 +17,7 @@ let search = await yts(q)
 
         let data = await fetchJson (`https://api.dreaded.site/api/ytdl/video?url=${link}`)
 
-await reply("*🌸DOWNLOADING···*\n_${search.all[0].title}_\n> ALEXA")
+reply("*🌸DOWNLOADING···*\n ALEXA")
 await conn.sendMessage(from, {document: {url: data.result.downloadLink},mimetype: "audio/mp3",fileName: `${search.all[0].title}.mp3`,caption: `*© ᴄʀᴇᴀᴛᴇᴅ ʙʏ ꜱᴀᴅᴇᴇꜱʜᴀ ᴄᴏᴅᴇʀ · · ·* 🧑🏻‍💻`}, { quoted: mek })
 
 }catch(e){
